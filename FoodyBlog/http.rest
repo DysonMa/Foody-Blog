@@ -1,0 +1,147 @@
+@api_url=http://localhost:8080
+@token=
+
+
+@restaurantId=
+### restaurant
+GET {{api_url}}/restaurants
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/restaurants?filter=name:Mac,stars>0
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/restaurants/{{restaurantId}}
+Cookie: AuthToken={{token}}
+
+###
+POST {{api_url}}/restaurants
+Cookie: AuthToken={{token}}
+Content-Type: application/json
+
+{
+    "name": "MacDonald",
+    "address": "Taiwan, Taipei",
+    "longitude": 121.5,
+    "latitude": 22.5,
+    "stars": 1,
+    "phone": "0950123465",
+    "description": "Awesome restaurant in Taiwan!",
+    "categories": ["Fast Food"]
+}
+
+###
+PATCH {{api_url}}/restaurants/{{restaurantId}}
+Cookie: AuthToken={{token}}
+Content-Type: application/json
+
+{
+    "name": "MacDonald2",
+    "address": "Taiwan, Taipei",
+    "longitude": 121.5,
+    "latitude": 22.5,
+    "stars": 0,
+    "phone": "0950123465",
+    "description": "Awesome restaurant in Taiwan!",
+    "categories": ["Fast Food"]
+}
+
+###
+DELETE {{api_url}}/restaurants/{{restaurantId}}
+Cookie: AuthToken={{token}}
+
+
+@userId=
+### user
+GET {{api_url}}/users
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/users/{{userId}}
+Cookie: AuthToken={{token}}
+
+###
+POST {{api_url}}/users
+Content-Type: application/json
+Cookie: AuthToken={{token}}
+
+{
+    "displayName": "Madi",
+    "email": "madi@gmail.com",
+    "password": "xhfadil12aha",
+    "introduction": "Hello, Madi"
+}
+
+###
+PATCH {{api_url}}/users/{{userId}}
+Content-Type: application/json
+Cookie: AuthToken={{token}}
+
+{
+    "displayName": "Madi3",
+    "email": "madi03@gmail.com",
+    "password": "xhfadil12aha",
+    "introduction": "Hello, Madi03"
+}
+
+###
+DELETE {{api_url}}/users/{{userId}}
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/users/{{userId}}/comments
+Cookie: AuthToken={{token}}
+
+###
+POST {{api_url}}/users/{{userId}}/comments
+Cookie: AuthToken={{token}}
+Content-Type: application/json
+
+{
+    "content": "This restaurant is good and very nice!",
+    "tweetCount": 13,
+    "isDraft": true
+}
+
+###
+PATCH {{api_url}}/users/{{userId}}/comments/{{commentId}}
+Cookie: AuthToken={{token}}
+Content-Type: application/json
+
+{
+    "content": "Happy New Year!",
+    "tweetCount": 53,
+    "isDraft": false
+}
+
+
+@commentId=
+### Comment
+GET {{api_url}}/comments/drafts
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/comments/published
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/comments/{{commentId}}
+Cookie: AuthToken={{token}}
+
+###
+GET {{api_url}}/comments?filter=content:hello
+Cookie: AuthToken={{token}}
+
+
+### auth
+POST {{api_url}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "madi",
+    "password": "HelloMadisney"
+}
+
+###
+GET {{api_url}}/auth/logout
